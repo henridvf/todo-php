@@ -12,4 +12,13 @@ return function (App $app) {
         return $renderer->render($response, "index.php", $args);
     });
 
+    $app->get('/tasks', 'TasksPageController');
+    $app->get('/task[/{id}]', 'AddTaskPageController');
+
+    $app->get('/addtask', 'AddTaskPageController');
+    $app->post('/addtask', 'AddTaskController');
+
+    $app->get('/completetask/{id}', 'CompleteTaskController');
+
+    $app->get('/deletetask/{id}', 'DeleteTaskController');
 };
