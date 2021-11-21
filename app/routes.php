@@ -13,12 +13,12 @@ return function (App $app) {
     });
 
     $app->get('/tasks', 'TasksPageController');
-    $app->get('/task[/{id}]', 'AddTaskPageController');
 
-    $app->get('/addtask', 'AddTaskPageController');
-    $app->post('/addtask', 'AddTaskController');
+    $app->get('/task', 'AddTaskPageController');
+    $app->post('/task', 'AddTaskController');
 
     $app->get('/completetask/{id}', 'CompleteTaskController');
 
     $app->get('/deletetask/{id}', 'DeleteTaskController');
+//    $app->delete('/tasks/{id}', 'DeleteTaskController');
 };

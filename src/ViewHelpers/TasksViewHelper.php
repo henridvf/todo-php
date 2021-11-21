@@ -6,24 +6,25 @@ use App\Entities\Task;
 
 class TasksViewHelper
 {
-    private static function displayActionButton(Task $task): string
+    private static function displayActionButtons(Task $task): string
     {
         if ($task->getCompleted() == 1) {
-            $str = '<a href="/deletetask/' . $task->getId() .'">Delete</a>';
+            $str = '<td><input class="form-check-input position-relative top-50 start-50 translate-middle-x" type="checkbox" value="" disabled checked></td>';
+            $str .= '<td><a href="/deletetask/' . $task->getId() .'" class="btn btn-sm btn-outline-danger">Delete</a></td>';
         } else {
-            $str = '<a href="/completetask/' . $task->getId() .'">Complete</a>';
+            $str = '<td><input class="form-check-input position-relative top-50 start-50 translate-middle-x" type="checkbox" value="" disabled></td>';
+            $str .= '<td><a href="/completetask/' . $task->getId() .'" class="btn btn-sm btn-outline-success">Complete</a></td>';
         }
         return $str;
     }
 
     public static function displayTasks(array $tasks): string
     {
-        $htmlStr = '<table><th style="text-align: left">Task</th><th style="text-align: left">Created</th>';
-        $htmlStr .= '<th>Completed</th><th/>';
+        $htmlStr = '<table class="table table-sm table-bordered shadow-sm"><thead class="table-light"><th scope="col">Task</th><th scope="col">Created</th>';
+        $htmlStr .= '<th class="text-center">Completed</th><th/></thead>';
         foreach ($tasks as $task) {
-            $htmlStr .= '<tr><td>' . $task->getName() . '</td><td>' . $task->getDateCreated() . '</td>';
-            $htmlStr .= '<td>' . $task->getCompleted() . '</td>';
-            $htmlStr .= '<td>' . self::displayActionButton($task) . '</td></tr>';
+            $htmlStr .= '<tr scope="row"><td>' . $task->getName() . '</td><td>' . $task->getDateCreated() . '</td>';
+            $htmlStr .= self::displayActionButtons($task) . '</tr>';
         }
         $htmlStr .= '</table>';
         return $htmlStr;

@@ -22,7 +22,7 @@ class DeleteTaskController
         if (!$result) {
             $statusCode = 400;
         } else {
-            $statusCode = 200;
+            $statusCode = 204;
         }
         return $response->withHeader('Location', '../tasks')->withStatus($statusCode);
     }
